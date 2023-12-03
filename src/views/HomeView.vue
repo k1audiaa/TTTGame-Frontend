@@ -8,3 +8,6 @@ import HelloWorld from "@/components/HelloWorld.vue";
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
   </div>
 </template>
+
+<style scoped>
+</style>
