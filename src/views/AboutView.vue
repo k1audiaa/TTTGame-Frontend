@@ -2,6 +2,7 @@
   <h1>Welcome to TTTGame!</h1>
 </template>
 
+#Add environment variable VUE_APP_BACKEND_BASE_URL script file is missing
 <script>
 export default {
   name: 'AboutView',
