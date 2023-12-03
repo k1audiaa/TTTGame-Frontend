@@ -2,7 +2,12 @@
   "name": "tttgame",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=6.0.0"
+  },
   "scripts": {
+    "start": "vue-cli-service serve",
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
