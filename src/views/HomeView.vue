@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import HelloWorld from "@/components/HelloWorld.vue";
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="home">
+    <img alt="Vue Logo" src="../assets/logo.svg">
+    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  </div>
 </template>
