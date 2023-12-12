@@ -9,12 +9,39 @@
   </div>
 </template>
 
+
+import {ref, onMounted} from 'vue'
+import type {Ref} from 'vue'
+
+type User = { id: number, username: string, password: string, points: string }
+const users: Ref> = ref([])
+
+function loadUsers () {
+  const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL
+  const endpoint = baseUrl + '/api/users'
+  const requestOptions: RequestInit = {
+    method: 'GET',
+    redirect: 'follow',
+  }
+  fetch(endpoint, requestOptions)
+      .then(response => response.json())
+      .then(result => result.forEach((user: User) => {
+        users.value.push(user)
+      }))
+      .catch(error => console.log('error', error))
+}
+// Lifecycle hooks
+onMounted(() => {
+  loadUsers()
+})
+
+
 <script>
 export default {
   name: "HomeView",
   mounted() {
-    const baseUrl = import.meta.env.VITE_BASE_URL
-    const endpoint = `${baseUrl}/api/users`
+    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL
+    const endpoint = baseUrl + '/api/users'
     const requestOptions = {
       method: 'GET',
       redirect: 'follow'
