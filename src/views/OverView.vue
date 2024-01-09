@@ -1,7 +1,6 @@
-
 <style>
 body, html {
-  .about {
+  .overview {
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -9,6 +8,7 @@ body, html {
   }
 }
 </style>
+
 <template>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap">
   <div class="overview">
@@ -16,12 +16,9 @@ body, html {
       <div class="overlap-group">
         <div class="text-wrapper">Score</div>
         <div class="text-wrapper-2">[Integer]</div>
-      </div>
-      <div class="web-banner" />
-      <p class="hello-user">
-        <span class="span">Hello </span>
-        <span class="text-wrapper-3">[User]</span>
-      </p>
+        <div class="text-wrapper-3">Hello</div>
+        <div class="text-wrapper-4">[User]</div>
+        </div>
       <div class="overlap">
         <router-link to="/overview" class="custom-button">PLAY</router-link>
       </div>
@@ -91,8 +88,7 @@ body, html {
   white-space: nowrap;
 }
 
-
-.overview .hello-user {
+.overview .text-wrapper-3 {
   color: transparent;
   font-family: "Source Code Pro-Bold", Helvetica;
   font-size: 55px;
@@ -102,15 +98,6 @@ body, html {
   line-height: normal;
   position: absolute;
   top: 169px;
-}
-
-.overview .span {
-  color: #ffffff;
-  font-family: "Source Code Pro-Bold", Helvetica;
-}
-
-.overview .text-wrapper-3 {
-  color: #4340d7;
 }
 
 .overview .overlap {
@@ -136,6 +123,7 @@ body, html {
   top: 0;
   width: 433px;
 }
+
 .overview .text-wrapper-4 {
   color: #ffffff;
   font-family: "Press Start 2P", Helvetica;
