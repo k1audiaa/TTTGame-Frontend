@@ -1,8 +1,3 @@
-<template>
-  <div class="overview">
-    <div class="text-wrapper">Overview Page!</div>
-  </div>
-</template>
 
 <style>
 body, html {
@@ -15,6 +10,7 @@ body, html {
 }
 </style>
 <template>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap">
   <div class="overview">
     <div class="div">
       <div class="overlap-group">
@@ -27,7 +23,7 @@ body, html {
         <span class="text-wrapper-3">[User]</span>
       </p>
       <div class="overlap">
-        <div class="text-wrapper-4">PLAY</div>
+        <router-link to="/overview" class="custom-button">PLAY</router-link>
       </div>
     </div>
   </div>
@@ -35,17 +31,22 @@ body, html {
 
 <script>
 export default {
-  name: "AboutView",
+  name: "OverView",
 };
 </script>
 
 <style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
 .overview {
   background-color: #151617;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  width: 100%;
+  height: 100vh;
 }
 
 .overview .div {
@@ -66,7 +67,7 @@ export default {
 
 .overview .text-wrapper {
   color: #ffffff;
-  font-family: "Press Start 2P-Regular", Helvetica;
+  font-family: "Press Start 2P", Helvetica;
   font-size: 40px;
   font-weight: 400;
   left: 67px;
@@ -79,7 +80,7 @@ export default {
 
 .overview .text-wrapper-2 {
   color: #ffffff;
-  font-family: "Press Start 2P-Regular", Helvetica;
+  font-family: "Press Start 2P", Helvetica;
   font-size: 30px;
   font-weight: 400;
   left: 29px;
@@ -90,14 +91,6 @@ export default {
   white-space: nowrap;
 }
 
-.overview .web-banner {
-  background-color: #ffffff;
-  height: 57px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 1280px;
-}
 
 .overview .hello-user {
   color: transparent;
@@ -113,6 +106,7 @@ export default {
 
 .overview .span {
   color: #ffffff;
+  font-family: "Source Code Pro-Bold", Helvetica;
 }
 
 .overview .text-wrapper-3 {
@@ -127,10 +121,24 @@ export default {
   top: 629px;
   width: 433px;
 }
-
+.custom-button {
+  background-color: #4340d7;
+  color: #ffffff;
+  font-family: "Press Start 2P", Helvetica;
+  font-size: 50px;
+  font-weight: 400;
+  height: 82px;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 433px;
+}
 .overview .text-wrapper-4 {
   color: #ffffff;
-  font-family: "Press Start 2P-Regular", Helvetica;
+  font-family: "Press Start 2P", Helvetica;
   font-size: 50px;
   font-weight: 400;
   left: 80px;
