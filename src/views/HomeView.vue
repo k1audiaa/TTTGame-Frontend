@@ -4,7 +4,7 @@
     <div class="div">
       <div class="text-wrapper">Let’s</div>
       <div class="text-wrapper-2">TicTacToe</div>
-      <router-link to="/about" class="custom-button">Go!</router-link>
+      <router-link to="/overview" class="custom-button">Go!</router-link>
     </div>
   </div>
 </template>
