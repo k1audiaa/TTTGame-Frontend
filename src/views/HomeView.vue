@@ -4,65 +4,16 @@
     <div class="div">
       <div class="text-wrapper">Let’s</div>
       <div class="text-wrapper-2">TicTacToe</div>
-      <router-link to="/overview" class="custom-button">Go!</router-link>
+      <router-link to="/overview" class="custom-button">GO!</router-link>
     </div>
   </div>
 </template>
 
-
-import {ref, onMounted} from 'vue'
-import type {Ref} from 'vue'
-
-type User = { id: number, username: string, password: string, points: string }
-const users: Ref> = ref([])
-
-function loadUsers () {
-  const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL
-  const endpoint = baseUrl + '/api/users'
-  const requestOptions: RequestInit = {
-    method: 'GET',
-    redirect: 'follow',
-  }
-  fetch(endpoint, requestOptions)
-      .then(response => response.json())
-      .then(result => result.forEach((user: User) => {
-        users.value.push(user)
-      }))
-      .catch(error => console.log('error', error))
-}
-// Lifecycle hooks
-onMounted(() => {
-  loadUsers()
-})
-
-
-<script>
-export default {
-  name: "HomeView",
-  mounted() {
-    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL
-    const endpoint = baseUrl + '/api/users'
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    }
-
-    fetch(endpoint, requestOptions)
-        .then(response => response.json())
-        .then(result => result.forEach(user => console.log(user)))
-        .catch(error => console.log('error', error))
-  }
-};
+<script setup lang="ts">
 </script>
 
-<style>
-body, html {
-  margin: 0;
-  padding: 0;
-  background-color: #151617;
-  width: 100%;
-}
 
+<style scoped>
 .landing-page {
   background-color: #151617;
   display: flex;

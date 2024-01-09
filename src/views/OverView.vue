@@ -1,68 +1,128 @@
-<style>
-body, html {
-  .overview {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-</style>
-
 <template>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap">
   <div class="overview">
     <div class="div">
+      <div class="hello">Hello</div>
+      <div class="username">{{ username }}</div>
       <div class="overlap-group">
-        <div class="text-wrapper">Score</div>
-        <div class="text-wrapper-2">[Integer]</div>
-        <div class="text-wrapper-3">Hello</div>
-        <div class="text-wrapper-4">[User]</div>
-        </div>
-      <div class="overlap">
-        <router-link to="/overview" class="custom-button">PLAY</router-link>
+        <div class="score">Score</div>
+        <div class="points">{{ points }}</div>
       </div>
+      <router-link to="/game" class="custom-button">PLAY</router-link>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "OverView",
-};
+
+<script lang="ts">
+import { defineComponent, ref, onMounted } from 'vue';
+
+export default defineComponent({
+  name: "Overview",
+  setup() {
+    const username = ref("[User]");
+    const points = ref(0);
+
+    const fetchUsername = async () => {
+      try {
+        const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+        const endpoint = `${baseUrl}/api/users/2`;
+        const requestOptions = {
+          method: "GET",
+          redirect: "follow",
+        };
+
+        const response = await fetch(endpoint, requestOptions);
+        const user = await response.json();
+
+        username.value = user.username;
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    const fetchPoints = async () => {
+      try {
+        const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+        const endpoint = `${baseUrl}/api/users/2`;
+        const requestOptions = {
+          method: "GET",
+          redirect: "follow",
+        };
+
+        const response = await fetch(endpoint, requestOptions);
+        const user = await response.json();
+
+        points.value = user.points;
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    onMounted(() => {
+      fetchUsername();
+      fetchPoints();
+    });
+
+    return { username, points };
+  },
+});
 </script>
 
-<style>
-body, html {
-  height: 100%;
-  margin: 0;
-}
+
+<style scoped>
 .overview {
   background-color: #151617;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  width: 100%;
   justify-content: center;
-  height: 100vh;
+  align-items: center;
 }
 
 .overview .div {
   background-color: #151617;
   height: 832px;
-  position: relative;
   width: 1280px;
+  position: absolute;
+}
+
+.overview .hello {
+  color: #ffffff;
+  font-family: "Press Start 2P", Helvetica;
+  font-size: 55px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 160px;
+  left: 330px;
+}
+
+.overview .username {
+  color: #4340d7;
+  font-family: "Press Start 2P", Helvetica;
+  font-size: 55px;
+  font-weight: 600;
+  left: 660px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 160px;
+  white-space: nowrap;
 }
 
 .overview .overlap-group {
   background-color: #4340d7;
+  border-radius: 5px;
   height: 234px;
   left: 473px;
-  position: absolute;
-  top: 299px;
+  top: 290px;
   width: 334px;
+  position: absolute;
 }
 
-.overview .text-wrapper {
+.overview .score {
   color: #ffffff;
   font-family: "Press Start 2P", Helvetica;
   font-size: 40px;
@@ -75,12 +135,12 @@ body, html {
   white-space: nowrap;
 }
 
-.overview .text-wrapper-2 {
+.overview .points {
   color: #ffffff;
   font-family: "Press Start 2P", Helvetica;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 400;
-  left: 29px;
+  left: 110px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
@@ -88,53 +148,26 @@ body, html {
   white-space: nowrap;
 }
 
-.overview .text-wrapper-3 {
-  color: transparent;
-  font-family: "Source Code Pro-Bold", Helvetica;
-  font-size: 55px;
-  font-weight: 700;
-  left: 442px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 169px;
-}
-
-.overview .overlap {
-  background-size: 100% 100%;
-  height: 82px;
-  left: 422px;
-  position: absolute;
-  top: 629px;
-  width: 433px;
-}
 .custom-button {
   background-color: #4340d7;
   color: #ffffff;
-  font-family: "Press Start 2P", Helvetica;
-  font-size: 50px;
-  font-weight: 400;
-  height: 82px;
-  left: 0;
+  font-family: "Press Start 2P", Helvetica ;
+  font-size: 30px;
+  font-weight: 600;
+  padding: 20px 15px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
   text-align: center;
-  top: 0;
-  width: 433px;
+  top: 590px;
+  left: 500px;
+  width: 275px;
 }
 
-.overview .text-wrapper-4 {
-  color: #ffffff;
-  font-family: "Press Start 2P", Helvetica;
-  font-size: 50px;
-  font-weight: 400;
-  left: 80px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: center;
-  top: 15px;
-  width: 275px;
+.custom-button:hover {
+  background-color: #2d2c8b;
 }
 </style>
