@@ -27,6 +27,11 @@ const router = createRouter({
       path: '/lost',
       name: 'lostview',
       component: () => import('../views/LostView.vue')
+    },
+    {
+      path: '/draw',
+      name: 'drawview',
+      component: () => import('../views/DrawView.vue')
     }
   ]
 })
