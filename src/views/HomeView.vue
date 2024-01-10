@@ -1,16 +1,13 @@
 <template>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap">
-  <div class="landing-page">
-    <div class="div">
-      <div class="text-wrapper">Let’s</div>
-      <div class="text-wrapper-2">TicTacToe</div>
-      <router-link to="/overview" class="custom-button">GO!</router-link>
+    <div class="landing-page">
+      <div class="div">
+        <div class="text-wrapper">Let’s</div>
+        <div class="text-wrapper-2">TicTacToe</div>
+        <router-link to="/overview" class="custom-button">GO!</router-link>
+      </div>
     </div>
-  </div>
 </template>
-
-<script setup lang="ts">
-</script>
 
 
 <style scoped>

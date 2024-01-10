@@ -90,8 +90,8 @@ export default defineComponent({
 .overview .hello {
   color: #ffffff;
   font-family: "Press Start 2P", Helvetica;
-  font-size: 55px;
-  font-weight: 600;
+  font-size: 50px;
+  font-weight: 500;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
@@ -102,8 +102,8 @@ export default defineComponent({
 .overview .username {
   color: #4340d7;
   font-family: "Press Start 2P", Helvetica;
-  font-size: 55px;
-  font-weight: 600;
+  font-size: 50px;
+  font-weight: 500;
   left: 660px;
   letter-spacing: 0;
   line-height: normal;
@@ -125,9 +125,9 @@ export default defineComponent({
 .overview .score {
   color: #ffffff;
   font-family: "Press Start 2P", Helvetica;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 400;
-  left: 67px;
+  left: 90px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
@@ -138,9 +138,9 @@ export default defineComponent({
 .overview .points {
   color: #ffffff;
   font-family: "Press Start 2P", Helvetica;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 400;
-  left: 110px;
+  left: 120px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
@@ -152,7 +152,7 @@ export default defineComponent({
   background-color: #4340d7;
   color: #ffffff;
   font-family: "Press Start 2P", Helvetica ;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 600;
   padding: 20px 15px;
   cursor: pointer;
@@ -162,7 +162,7 @@ export default defineComponent({
   line-height: normal;
   position: absolute;
   text-align: center;
-  top: 590px;
+  top: 600px;
   left: 500px;
   width: 275px;
 }
