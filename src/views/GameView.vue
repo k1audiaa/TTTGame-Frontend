@@ -24,8 +24,9 @@ import { useRouter } from 'vue-router';
 
 const cells = reactive(Array(9).fill(''));
 const username = ref("[User]");
-const points = ref(0);
+const points = ref(100);
 const userId = ref(null);
+const userLevel = ref(1);
 
 const router = useRouter();
 
@@ -79,7 +80,7 @@ const updatePoints = async (points) => {
 
     await fetch(endpoint, requestOptions);
   } catch (error) {
-    console.error("Error updating points:", error);
+    console.error("Error updating points and level:", error);
   }
 };
 
@@ -203,9 +204,10 @@ const fetchUsername = async () => {
     const response = await fetch(endpoint, requestOptions);
     const user = await response.json();
 
-    userId.value = user.id;  // Set userId from the response
+    userId.value = user.id;
     username.value = user.username;
-    currentPlayer.value = username.value; // Set currentPlayer initially
+    userLevel.value = user.level; // Setzt das Level
+    currentPlayer.value = username.value; // Setzt currentPlayer initial
   } catch (error) {
     console.log("error", error);
   }
