@@ -169,7 +169,7 @@ const getWinningMove = (symbol) => {
 const fetchUsername = async () => {
   try {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const endpoint = `${baseUrl}/api/users/2`;
+    const endpoint = `${baseUrl}/api/users/9`;
     const requestOptions = {
       method: "GET",
       redirect: "follow",

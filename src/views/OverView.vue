@@ -4,9 +4,13 @@
     <div class="div">
       <div class="hello">Hello</div>
       <div class="username">{{ username }}</div>
-      <div class="overlap-group">
+      <div class="overlap-group1">
         <div class="score">Score</div>
         <div class="points">{{ points }}</div>
+      </div>
+      <div class="overlap-group2">
+        <div class="level">Level</div>
+        <div class="level2">{{ level }}</div>
       </div>
       <router-link to="/game" class="custom-button">PLAY</router-link>
     </div>
@@ -22,11 +26,12 @@ export default defineComponent({
   setup() {
     const username = ref("[User]");
     const points = ref(0);
+    const level = ref(1);
 
     const fetchUsername = async () => {
       try {
         const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-        const endpoint = `${baseUrl}/api/users/2`;
+        const endpoint = `${baseUrl}/api/users/9`;
         const requestOptions = {
           method: "GET",
           redirect: "follow",
@@ -44,7 +49,7 @@ export default defineComponent({
     const fetchPoints = async () => {
       try {
         const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-        const endpoint = `${baseUrl}/api/users/2`;
+        const endpoint = `${baseUrl}/api/users/9`;
         const requestOptions = {
           method: "GET",
           redirect: "follow",
@@ -59,12 +64,31 @@ export default defineComponent({
       }
     };
 
+    const fetchLevel = async () => {
+      try {
+        const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+        const endpoint = `${baseUrl}/api/users/9`;
+        const requestOptions = {
+          method: "GET",
+          redirect: "follow",
+        };
+
+        const response = await fetch(endpoint, requestOptions);
+        const user = await response.json();
+
+        level.value = user.level;
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
     onMounted(() => {
       fetchUsername();
       fetchPoints();
+      fetchLevel();
     });
 
-    return { username, points };
+    return { username, points, level };
   },
 });
 </script>
@@ -112,11 +136,11 @@ export default defineComponent({
   white-space: nowrap;
 }
 
-.overview .overlap-group {
+.overview .overlap-group1 {
   background-color: #4340d7;
   border-radius: 5px;
   height: 234px;
-  left: 473px;
+  left: 280px;
   top: 290px;
   width: 334px;
   position: absolute;
@@ -126,7 +150,7 @@ export default defineComponent({
   color: #ffffff;
   font-family: "Press Start 2P", Helvetica;
   font-size: 30px;
-  font-weight: 400;
+  font-weight: 600;
   left: 90px;
   letter-spacing: 0;
   line-height: normal;
@@ -141,6 +165,42 @@ export default defineComponent({
   font-size: 30px;
   font-weight: 400;
   left: 120px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 138px;
+  white-space: nowrap;
+}
+
+.overlap-group2 {
+  background-color: #4340d7;
+  border-radius: 5px;
+  height: 234px;
+  left: 650px;
+  top: 290px;
+  width: 334px;
+  position: absolute;
+}
+
+.overview .level {
+  color: #ffffff;
+  font-family: "Press Start 2P", Helvetica;
+  font-size: 30px;
+  font-weight: 600;
+  left: 90px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 50px;
+  white-space: nowrap;
+}
+
+.overview .level2 {
+  color: #ffffff;
+  font-family: "Press Start 2P", Helvetica;
+  font-size: 30px;
+  font-weight: 400;
+  left: 155px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
