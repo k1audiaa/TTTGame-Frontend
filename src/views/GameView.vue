@@ -25,6 +25,7 @@ import { useRouter } from 'vue-router';
 const cells = reactive(Array(9).fill(''));
 const username = ref("[User]");
 const points = ref(0);
+const userId = ref(null);
 
 const router = useRouter();
 
@@ -46,19 +47,40 @@ const cellClicked = (index) => {
 
 const isGameFinished = () => {
   console.log("Checking if the game is finished. Current Player:", currentPlayer.value);
+  let pointsChange = 0;
+
   if (checkWin('X')) {
-    updatePointsInDatabase(points.value + 10);
+    pointsChange = 20;
     setTimeout(() => router.push('/win'), 1000);
-    return true;
   } else if (checkWin('O')) {
-    updatePointsInDatabase(points.value - 10);
+    pointsChange = -10;
     setTimeout(() => router.push('/lost'), 1000);
-    return true;
   } else if (isBoardFull()) {
     setTimeout(() => router.push('/draw'), 1000);
-    return true;
   }
-  return false;
+
+  if (pointsChange !== 0) {
+    updatePoints(pointsChange); // Funktion zum Aktualisieren der Punkte im Backend aufrufen
+  }
+
+  return pointsChange !== 0;
+};
+
+const updatePoints = async (points) => {
+  try {
+    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+    const endpoint = `${baseUrl}/api/users/${userId.value}/updatePoints?points=${points}`;
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    await fetch(endpoint, requestOptions);
+  } catch (error) {
+    console.error("Error updating points:", error);
+  }
 };
 
 
@@ -172,7 +194,7 @@ const getWinningMove = (symbol) => {
 const fetchUsername = async () => {
   try {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const endpoint = `${baseUrl}/api/users/9`;
+    const endpoint = `${baseUrl}/api/users/9`;  // Update with your actual endpoint
     const requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -181,6 +203,7 @@ const fetchUsername = async () => {
     const response = await fetch(endpoint, requestOptions);
     const user = await response.json();
 
+    userId.value = user.id;  // Set userId from the response
     username.value = user.username;
     currentPlayer.value = username.value; // Set currentPlayer initially
   } catch (error) {
