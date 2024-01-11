@@ -9,7 +9,7 @@
     <div class="yourScore">Your score:</div>
     <div class="points">{{ points }}</div>
     <router-link to="/overview" class="custom-button">Overview</router-link>
-    <router-link to="/game" class="custom-button2">Restart</router-link>
+    <router-link to="/game" class="custom-button2">Rematch</router-link>
   </div>
 </template>
 
@@ -76,7 +76,7 @@ export default defineComponent({
   font-family: "Press Start 2P", Helvetica;
   position: absolute;
   top: 400px;
-  left: 650px;
+  left: 660px;
   font-size: 40px;
   color: #4441d8;
 }

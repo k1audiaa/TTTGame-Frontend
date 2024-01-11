@@ -31,6 +31,7 @@ const router = useRouter();
 const currentPlayer = ref(username.value);
 
 const cellClicked = (index) => {
+  console.log("Cell clicked. Current Player:", currentPlayer.value)
   if (cells[index] === '' && !isGameFinished() && currentPlayer.value === username.value) {
     cells[index] = 'X';
     currentPlayer.value = "GamingAI"; // Computer's turn
@@ -44,12 +45,13 @@ const cellClicked = (index) => {
 };
 
 const isGameFinished = () => {
+  console.log("Checking if the game is finished. Current Player:", currentPlayer.value);
   if (checkWin('X')) {
-    points.value += 10;
+    updatePointsInDatabase(points.value + 10);
     setTimeout(() => router.push('/win'), 1000);
     return true;
   } else if (checkWin('O')) {
-    points.value -= 10;
+    updatePointsInDatabase(points.value - 10);
     setTimeout(() => router.push('/lost'), 1000);
     return true;
   } else if (isBoardFull()) {
@@ -58,6 +60,7 @@ const isGameFinished = () => {
   }
   return false;
 };
+
 
 const checkWin = (symbol) => {
   // Check rows, columns, and diagonals for a win
