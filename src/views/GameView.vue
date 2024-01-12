@@ -238,7 +238,7 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(3, auto);
   grid-gap: 10px;
-  margin-left: 570px;
+  margin-left: 580px;
   margin-top: 250px;
   width: 150px;
 }
@@ -276,7 +276,7 @@ onMounted(() => {
   position: absolute;
   text-align: center;
   top: 650px;
-  left: 560px;
+  left: 570px;
   width: 275px;
   text-decoration: none;
 }

@@ -63,7 +63,7 @@ onMounted(() => {
   color: #fff;
   position: absolute;
   top: 320px;
-  left: 550px;
+  left: 540px;
   font-size: 35px;
 }
 
@@ -90,7 +90,7 @@ onMounted(() => {
   position: absolute;
   text-align: center;
   top: 550px;
-  left: 580px;
+  left: 570px;
   width: 275px;
   text-decoration: none;
 }
@@ -115,7 +115,7 @@ onMounted(() => {
   position: absolute;
   text-align: center;
   top: 650px;
-  left: 580px;
+  left: 570px;
   width: 275px;
   text-decoration: none;
 }

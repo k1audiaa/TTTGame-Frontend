@@ -4,7 +4,7 @@
       <div class="div">
         <div class="text-wrapper">Let’s</div>
         <div class="text-wrapper-2">TicTacToe</div>
-        <router-link to="/overview" class="custom-button">GO!</router-link>
+        <router-link to="/login" class="custom-button">GO!</router-link>
       </div>
     </div>
 </template>
@@ -31,7 +31,7 @@
   font-family: "Source Code Pro-Bold", Helvetica;
   font-size: 60px;
   font-weight: 700;
-  left: 80px;
+  left: 100px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
@@ -45,7 +45,7 @@
   font-family: "Source Code Pro-Bold", Helvetica;
   font-size: 70px;
   font-weight: 700;
-  left: 460px;
+  left: 480px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
@@ -64,7 +64,7 @@
    cursor: pointer;
    border: none;
    border-radius: 5px;
-   left: 560px;
+   left: 580px;
    letter-spacing: 0;
    line-height: normal;
    position: absolute;

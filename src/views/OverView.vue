@@ -114,7 +114,7 @@ onMounted(() => {
   line-height: normal;
   position: absolute;
   top: 160px;
-  left: 400px;
+  left: 420px;
 }
 
 .overview .username {
@@ -122,7 +122,7 @@ onMounted(() => {
   font-family: "Press Start 2P", Helvetica;
   font-size: 50px;
   font-weight: 500;
-  left: 740px;
+  left: 780px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
@@ -134,7 +134,7 @@ onMounted(() => {
   background-color: #4340d7;
   border-radius: 5px;
   height: 234px;
-  left: 360px;
+  left: 370px;
   top: 290px;
   width: 334px;
   position: absolute;
@@ -170,7 +170,7 @@ onMounted(() => {
   background-color: #4340d7;
   border-radius: 5px;
   height: 234px;
-  left: 720px;
+  left: 740px;
   top: 290px;
   width: 334px;
   position: absolute;
@@ -217,7 +217,7 @@ onMounted(() => {
   position: absolute;
   text-align: center;
   top: 600px;
-  left: 550px;
+  left: 570px;
   width: 275px;
   text-decoration: none;
 }

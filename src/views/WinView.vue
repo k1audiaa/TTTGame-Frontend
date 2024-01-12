@@ -55,14 +55,14 @@ onMounted(() => {
   color: #fff;
   position: absolute;
   top: 150px;
-  left: 470px;
+  left: 480px;
 }
 .yourScore {
   font-family: "Press Start 2P", Helvetica;
   color: #fff;
   position: absolute;
   top: 320px;
-  left: 550px;
+  left: 540px;
   font-size: 35px;
 }
 
@@ -89,7 +89,7 @@ onMounted(() => {
   position: absolute;
   text-align: center;
   top: 550px;
-  left: 580px;
+  left: 570px;
   width: 275px;
   text-decoration: none;
 }
