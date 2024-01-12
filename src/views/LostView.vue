@@ -9,13 +9,13 @@
     <div class="yourScore">Your score:</div>
     <div class="points">{{ points }}</div>
     <router-link to="/overview" class="custom-button">Overview</router-link>
-    <logout-button />
+    <LogOutButton />
   </div>
 </template>
 
 
 <script setup lang="ts">
-import LogoutButton from '../components/LogoutButton.vue';
+import LogOutButton from '../components/LogOutButton.vue';
 import { ref, onMounted } from 'vue';
 
 const points = ref(0);
@@ -24,7 +24,7 @@ const fetchPoints = async () => {
   try {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const endpoint = `${baseUrl}/api/users/9`;
-    const requestOptions = {
+    const requestOptions:RequestInit = {
       method: "GET",
       redirect: "follow",
     };

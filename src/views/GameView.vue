@@ -4,7 +4,7 @@
     <span class="user">{{ currentPlayer }}</span>
     <span>, it's your turn!</span>
   </div>
-  <logout-button />
+  <LogOutButton />
   <div class="board">
     <div
         v-for="(cell, index) in cells"
@@ -20,7 +20,7 @@
 
 
 <script setup lang="ts">
-import LogoutButton from '../components/LogoutButton.vue';
+import LogOutButton from '../components/LogOutButton.vue';
 import { ref, onMounted, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -34,7 +34,7 @@ const router = useRouter();
 
 const currentPlayer = ref(username.value);
 
-const cellClicked = (index) => {
+const cellClicked = (index:number) => {
   console.log("Cell clicked. Current Player:", currentPlayer.value)
   if (cells[index] === '' && !isGameFinished() && currentPlayer.value === username.value) {
     cells[index] = 'X';
@@ -69,7 +69,7 @@ const isGameFinished = () => {
   return pointsChange !== 0;
 };
 
-const updatePoints = async (points) => {
+const updatePoints = async (points:number) => {
   try {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const endpoint = `${baseUrl}/api/users/${userId.value}/updatePoints?points=${points}`;
@@ -86,7 +86,7 @@ const updatePoints = async (points) => {
   }
 };
 
-const checkWin = (symbol) => {
+const checkWin = (symbol:string) => {
   // Check rows, columns, and diagonals for a win
   for (let i = 0; i < 3; i++) {
     if (
@@ -154,7 +154,7 @@ const computerMove = () => {
   isGameFinished();
 };
 
-const getWinningMove = (symbol) => {
+const getWinningMove = (symbol: string) => {
   // Check for a winning move in rows, columns, and diagonals
   for (let i = 0; i < 3; i++) {
     if (
@@ -197,7 +197,7 @@ const fetchUsername = async () => {
   try {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const endpoint = `${baseUrl}/api/users/9`;  // Update with your actual endpoint
-    const requestOptions = {
+    const requestOptions:RequestInit = {
       method: "GET",
       redirect: "follow",
     };
