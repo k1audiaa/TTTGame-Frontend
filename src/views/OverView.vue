@@ -13,83 +13,78 @@
         <div class="level2">{{ level }}</div>
       </div>
       <router-link to="/game" class="custom-button">PLAY</router-link>
+      <logout-button />
     </div>
   </div>
 </template>
 
 
-<script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+<script setup lang="ts">
+import LogoutButton from '../components/LogoutButton.vue';
+import { ref, onMounted } from 'vue';
 
-export default defineComponent({
-  name: "Overview",
-  setup() {
-    const username = ref("[User]");
-    const points = ref(0);
-    const level = ref(1);
+const username = ref("[User]");
+const points = ref(0);
+const level = ref(1);
 
-    const fetchUsername = async () => {
-      try {
-        const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-        const endpoint = `${baseUrl}/api/users/9`;
-        const requestOptions = {
-          method: "GET",
-          redirect: "follow",
-        };
-
-        const response = await fetch(endpoint, requestOptions);
-        const user = await response.json();
-
-        username.value = user.username;
-      } catch (error) {
-        console.log("error", error);
-      }
+const fetchUsername = async () => {
+  try {
+    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+    const endpoint = `${baseUrl}/api/users/9`;
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
     };
 
-    const fetchPoints = async () => {
-      try {
-        const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-        const endpoint = `${baseUrl}/api/users/9`;
-        const requestOptions = {
-          method: "GET",
-          redirect: "follow",
-        };
+    const response = await fetch(endpoint, requestOptions);
+    const user = await response.json();
 
-        const response = await fetch(endpoint, requestOptions);
-        const user = await response.json();
+    username.value = user.username;
+  } catch (error) {
+    console.log("error", error);
+  }
+};
 
-        points.value = user.points;
-      } catch (error) {
-        console.log("error", error);
-      }
+const fetchPoints = async () => {
+  try {
+    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+    const endpoint = `${baseUrl}/api/users/9`;
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
     };
 
-    const fetchLevel = async () => {
-      try {
-        const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-        const endpoint = `${baseUrl}/api/users/9`;
-        const requestOptions = {
-          method: "GET",
-          redirect: "follow",
-        };
+    const response = await fetch(endpoint, requestOptions);
+    const user = await response.json();
 
-        const response = await fetch(endpoint, requestOptions);
-        const user = await response.json();
+    points.value = user.points;
+  } catch (error) {
+    console.log("error", error);
+  }
+};
 
-        level.value = user.level;
-      } catch (error) {
-        console.log("error", error);
-      }
+const fetchLevel = async () => {
+  try {
+    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+    const endpoint = `${baseUrl}/api/users/9`;
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
     };
 
-    onMounted(() => {
-      fetchUsername();
-      fetchPoints();
-      fetchLevel();
-    });
+    const response = await fetch(endpoint, requestOptions);
+    const user = await response.json();
 
-    return { username, points, level };
-  },
+    level.value = user.level;
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+
+onMounted(() => {
+  fetchUsername();
+  fetchPoints();
+  fetchLevel();
 });
 </script>
 
@@ -97,7 +92,6 @@ export default defineComponent({
 <style scoped>
 .overview {
   background-color: #151617;
-  display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: center;
@@ -120,7 +114,7 @@ export default defineComponent({
   line-height: normal;
   position: absolute;
   top: 160px;
-  left: 330px;
+  left: 400px;
 }
 
 .overview .username {
@@ -128,7 +122,7 @@ export default defineComponent({
   font-family: "Press Start 2P", Helvetica;
   font-size: 50px;
   font-weight: 500;
-  left: 660px;
+  left: 740px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
@@ -140,7 +134,7 @@ export default defineComponent({
   background-color: #4340d7;
   border-radius: 5px;
   height: 234px;
-  left: 280px;
+  left: 360px;
   top: 290px;
   width: 334px;
   position: absolute;
@@ -176,7 +170,7 @@ export default defineComponent({
   background-color: #4340d7;
   border-radius: 5px;
   height: 234px;
-  left: 650px;
+  left: 720px;
   top: 290px;
   width: 334px;
   position: absolute;
@@ -223,8 +217,9 @@ export default defineComponent({
   position: absolute;
   text-align: center;
   top: 600px;
-  left: 500px;
+  left: 550px;
   width: 275px;
+  text-decoration: none;
 }
 
 .custom-button:hover {

@@ -4,6 +4,7 @@
     <span class="user">{{ currentPlayer }}</span>
     <span>, it's your turn!</span>
   </div>
+  <logout-button />
   <div class="board">
     <div
         v-for="(cell, index) in cells"
@@ -18,7 +19,8 @@
 </template>
 
 
-<script setup>
+<script setup lang="ts">
+import LogoutButton from '../components/LogoutButton.vue';
 import { ref, onMounted, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -83,7 +85,6 @@ const updatePoints = async (points) => {
     console.error("Error updating points and level:", error);
   }
 };
-
 
 const checkWin = (symbol) => {
   // Check rows, columns, and diagonals for a win
@@ -237,7 +238,8 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(3, auto);
   grid-gap: 10px;
-  margin: auto;
+  margin-left: 570px;
+  margin-top: 250px;
   width: 150px;
 }
 
@@ -274,8 +276,9 @@ onMounted(() => {
   position: absolute;
   text-align: center;
   top: 650px;
-  left: 575px;
+  left: 560px;
   width: 275px;
+  text-decoration: none;
 }
 
 .custom-button:hover {

@@ -10,42 +10,37 @@
     <div class="points">{{ points }}</div>
     <router-link to="/overview" class="custom-button">Overview</router-link>
     <router-link to="/game" class="custom-button2">Rematch</router-link>
+    <logout-button />
   </div>
 </template>
 
 
-<script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+<script setup lang="ts">
+import LogoutButton from '../components/LogoutButton.vue';
+import { ref, onMounted } from 'vue';
 
-export default defineComponent({
-  name: "DrawView",
-  setup() {
-    const points = ref(0);
+const points = ref(0);
 
-    const fetchPoints = async () => {
-      try {
-        const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-        const endpoint = `${baseUrl}/api/users/9`;
-        const requestOptions = {
-          method: "GET",
-          redirect: "follow",
-        };
-
-        const response = await fetch(endpoint, requestOptions);
-        const user = await response.json();
-
-        points.value = user.points;
-      } catch (error) {
-        console.log("error", error);
-      }
+const fetchPoints = async () => {
+  try {
+    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+    const endpoint = `${baseUrl}/api/users/9`;
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
     };
 
-    onMounted(() => {
-      fetchPoints();
-    });
+    const response = await fetch(endpoint, requestOptions);
+    const user = await response.json();
 
-    return { points };
-  },
+    points.value = user.points;
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+
+onMounted(() => {
+  fetchPoints();
 });
 </script>
 
@@ -97,6 +92,7 @@ export default defineComponent({
   top: 550px;
   left: 580px;
   width: 275px;
+  text-decoration: none;
 }
 
 .custom-button:hover {
@@ -121,6 +117,7 @@ export default defineComponent({
   top: 650px;
   left: 580px;
   width: 275px;
+  text-decoration: none;
 }
 
 .custom-button2:hover {

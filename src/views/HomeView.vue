@@ -13,7 +13,6 @@
 <style scoped>
 .landing-page {
   background-color: #151617;
-  display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: center;
@@ -32,7 +31,7 @@
   font-family: "Source Code Pro-Bold", Helvetica;
   font-size: 60px;
   font-weight: 700;
-  left: 0;
+  left: 80px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
@@ -46,7 +45,7 @@
   font-family: "Source Code Pro-Bold", Helvetica;
   font-size: 70px;
   font-weight: 700;
-  left: 383px;
+  left: 460px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
@@ -65,13 +64,14 @@
    cursor: pointer;
    border: none;
    border-radius: 5px;
-   left: 503px;
+   left: 560px;
    letter-spacing: 0;
    line-height: normal;
    position: absolute;
    text-align: center;
    top: 500px;
    width: 275px;
+   text-decoration: none;
  }
 
 .custom-button:hover {
