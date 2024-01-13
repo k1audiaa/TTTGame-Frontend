@@ -1,11 +1,22 @@
 <template>
-  <router-link to="/" class="logout-button">Log Out</router-link>
+  <button @click="logout" class="logout-button">Log Out</button>
 </template>
 
-<script>
-export default {
-  name: 'LogOutButton'
-}
+<script setup lang="ts">
+import router from "@/router";
+
+const logout = () => {
+  // Clear stored user ID from localStorage
+  localStorage.removeItem('userId');
+
+  // You can also clear other user-related data if needed
+  localStorage.removeItem('username');
+  localStorage.removeItem('points');
+  localStorage.removeItem('level');
+
+  router.push('/');
+  console.log("User logged out successfully");
+};
 </script>
 
 <style scoped>
