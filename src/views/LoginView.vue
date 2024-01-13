@@ -45,27 +45,49 @@ const login = async () => {
     }
 
     const baseUrl: string = import.meta.env.VITE_BACKEND_BASE_URL;
-    const endpoint: string = `${baseUrl}/api/users`;
+    const userExistEndpoint: string = `${baseUrl}/api/users/exists?username=${username.value}`;
+    const userEndpoint: string = `${baseUrl}/api/users`;
 
-    const response = await axios.post<User>(endpoint, {
-      username: username.value,
-      points: points.value,
-      level: level.value,
-    });
+    // Check if user already exists
+    const userExistResponse = await axios.get(userExistEndpoint);
 
-    if (response.status === 200 || response.status === 201) {
-      console.log('User logged in successfully');
-      localStorage.setItem('username', username.value);
-      localStorage.setItem('userId', response.data.id.toString());
+    if (userExistResponse.data.exists) {
+      // User exists, fetch user data
+      const userResponse = await axios.get<User>(`${userEndpoint}/${userExistResponse.data.userId}`);
 
-      await router.push('/overview');
+      if (userResponse.status === 200) {
+        const user = userResponse.data;
+        console.log('User logged in successfully');
+        localStorage.setItem('username', user.username);
+        localStorage.setItem('userId', user.id.toString());
+        points.value = user.points;
+        level.value = user.level;
+        await router.push('/overview');
+      } else {
+        console.error('Unexpected response:', userResponse.status);
+      }
     } else {
-      console.error('Unexpected response:', response.status);
+      // User does not exist, create a new user
+      const newUserResponse = await axios.post<User>(userEndpoint, {
+        username: username.value,
+        points: points.value,
+        level: level.value,
+      });
+
+      if (newUserResponse.status === 201) {
+        console.log('New user created successfully');
+        localStorage.setItem('username', newUserResponse.data.username);
+        localStorage.setItem('userId', newUserResponse.data.id.toString());
+        await router.push('/overview');
+      } else {
+        console.error('Unexpected response:', newUserResponse.status);
+      }
     }
   } catch (error) {
     console.error('Error during login:', error);
   }
 };
+
 
 </script>
 
