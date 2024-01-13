@@ -193,11 +193,17 @@ const getWinningMove = (symbol: string) => {
   return -1; // No winning move
 };
 
-const fetchUsername = async () => {
+const fetchUserData = async () => {
   try {
+    const storedUserId = localStorage.getItem('userId');
+    if (!storedUserId) {
+      console.error('User ID not found in Local Storage.');
+      return;
+    }
+
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const endpoint = `${baseUrl}/api/users/9`;  // Update with your actual endpoint
-    const requestOptions:RequestInit = {
+    const endpoint = `${baseUrl}/api/users/${storedUserId}`;
+    const requestOptions: RequestInit = {
       method: "GET",
       redirect: "follow",
     };
@@ -205,17 +211,22 @@ const fetchUsername = async () => {
     const response = await fetch(endpoint, requestOptions);
     const user = await response.json();
 
-    userId.value = user.id;
-    username.value = user.username;
-    userLevel.value = user.level; // Setzt das Level
-    currentPlayer.value = username.value; // Setzt currentPlayer initial
+    if (user) {
+      userId.value = user.id;
+      username.value = user.username;
+      points.value = user.points; // Update points
+      userLevel.value = user.level; // Update the level
+      currentPlayer.value = username.value;
+    } else {
+      console.error('User not found in response');
+    }
   } catch (error) {
-    console.log("error", error);
+    console.error("Error fetching user data:", error);
   }
 };
 
 onMounted(() => {
-  fetchUsername();
+  fetchUserData();
 });
 </script>
 

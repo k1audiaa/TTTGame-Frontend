@@ -22,9 +22,15 @@ const points = ref(0);
 
 const fetchPoints = async () => {
   try {
+    const storedUserId = localStorage.getItem('userId');
+    if (!storedUserId) {
+      console.error('User ID not found in Local Storage.');
+      return;
+    }
+
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const endpoint = `${baseUrl}/api/users/9`;
-    const requestOptions:RequestInit = {
+    const endpoint = `${baseUrl}/api/users/${storedUserId}`;
+    const requestOptions: RequestInit = {
       method: "GET",
       redirect: "follow",
     };
@@ -34,7 +40,7 @@ const fetchPoints = async () => {
 
     points.value = user.points;
   } catch (error) {
-    console.log("error", error);
+    console.error("Error fetching points:", error);
   }
 };
 

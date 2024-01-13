@@ -22,71 +22,54 @@
 <script setup lang="ts">
 import LogOutButton from '../components/LogOutButton.vue';
 import { ref, onMounted } from 'vue';
+import axios from 'axios';
 
-const username = ref("[User]");
-const points = ref(0);
+const username = ref('[User]');
+const points = ref(100);
 const level = ref(1);
 
-const fetchUsername = async () => {
+const fetchUserData = async () => {
   try {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      username.value = storedUsername;
+    } else {
+      console.error('Username not found in Local Storage.');
+      return;
+    }
+
+    // Retrieve user ID from local storage
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      console.error('User ID not found in Local Storage.');
+      return;
+    }
+
+    // Fetch user data using user ID
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const endpoint = `${baseUrl}/api/users/9`;
-    const requestOptions:RequestInit = {
-      method: "GET",
-      redirect: "follow",
-    };
+    const endpoint = `${baseUrl}/api/users/${userId}`;
 
-    const response = await fetch(endpoint, requestOptions);
-    const user = await response.json();
+    const response = await axios.get(endpoint);
 
-    username.value = user.username;
+    if (response.status === 200 && response.data) {
+      const user = response.data;
+
+      points.value = user.points;
+      level.value = user.level;
+    } else {
+      console.error('Unexpected response:', response.status);
+    }
   } catch (error) {
-    console.log("error", error);
-  }
-};
-
-const fetchPoints = async () => {
-  try {
-    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const endpoint = `${baseUrl}/api/users/9`;
-    const requestOptions:RequestInit = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    const response = await fetch(endpoint, requestOptions);
-    const user = await response.json();
-
-    points.value = user.points;
-  } catch (error) {
-    console.log("error", error);
-  }
-};
-
-const fetchLevel = async () => {
-  try {
-    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const endpoint = `${baseUrl}/api/users/9`;
-    const requestOptions:RequestInit = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    const response = await fetch(endpoint, requestOptions);
-    const user = await response.json();
-
-    level.value = user.level;
-  } catch (error) {
-    console.log("error", error);
+    console.error("Error during user data fetching:", error);
   }
 };
 
 onMounted(() => {
-  fetchUsername();
-  fetchPoints();
-  fetchLevel();
+  console.log('Component is mounted, fetching user data...');
+  fetchUserData();
 });
 </script>
+
 
 
 <style scoped>

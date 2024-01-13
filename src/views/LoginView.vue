@@ -8,12 +8,68 @@
       <span>?</span>
     </div>
     <div class="input-container">
-      <input v-model="firstInput" placeholder="Type your username" class="input-field" />
-      <input v-model="secondInput" placeholder="Set your password" class="input-field" />
+      <input v-model="username" placeholder="Type your username" class="input-field" />
     </div>
-    <router-link to="/overview" class="custom-button">Let's TTT</router-link>
+    <button @click="login" class="custom-button">Let's TTT</button>
   </div>
 </template>
+
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import axios from 'axios';
+
+interface User {
+  id: number;
+  username: string;
+  points: number;
+  level: number;
+}
+
+const username = ref('');
+const points = ref(100);
+const level = ref(1);
+const router = useRouter();
+
+const login = async () => {
+  try {
+    if (!username.value) {
+      console.error('Username is required.');
+      return;
+    }
+
+    if (/\d/.test(username.value)) {
+      console.error('Username cannot contain numbers.');
+      return;
+    }
+
+    const baseUrl: string = import.meta.env.VITE_BACKEND_BASE_URL;
+    const endpoint: string = `${baseUrl}/api/users`;
+
+    const response = await axios.post<User>(endpoint, {
+      username: username.value,
+      points: points.value,
+      level: level.value,
+    });
+
+    if (response.status === 200 || response.status === 201) {
+      console.log('User logged in successfully');
+      localStorage.setItem('username', username.value);
+      localStorage.setItem('userId', response.data.id.toString());
+
+      await router.push('/overview');
+    } else {
+      console.error('Unexpected response:', response.status);
+    }
+  } catch (error) {
+    console.error('Error during login:', error);
+  }
+};
+
+</script>
+
+
 
 
 <style scoped>
@@ -42,7 +98,7 @@
 .input-container {
   display: flex;
   flex-direction: column;
-  margin-top: 400px;
+  margin-top: 420px;
   margin-left: 500px;
   margin-right: 500px;
 }
@@ -70,7 +126,7 @@
   line-height: normal;
   position: absolute;
   text-align: center;
-  top: 630px;
+  top: 600px;
   left: 570px;
   width: 275px;
   text-decoration: none;
