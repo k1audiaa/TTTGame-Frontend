@@ -14,15 +14,17 @@
     >
       {{ cell }}
     </div>
-    <router-link to="/overview" class="custom-button">Exit Game</router-link>
+    <router-link to="/overview" class="custom-button" @click="playGameExit">Exit Game</router-link>
   </div>
 </template>
 
 
 <script setup lang="ts">
 import LogOutButton from '../components/LogOutButton.vue';
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted, reactive, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
+
+import GameLogoutSound from '@/assets/GameLogout.mp3';
 
 const cells = reactive(Array(9).fill(''));
 const username = ref("[User]");
@@ -63,7 +65,7 @@ const isGameFinished = () => {
   }
 
   if (pointsChange !== 0) {
-    updatePoints(pointsChange); // Funktion zum Aktualisieren der Punkte im Backend aufrufen
+    updatePoints(pointsChange);
   }
 
   return pointsChange !== 0;
@@ -224,10 +226,13 @@ const fetchUserData = async () => {
     console.error("Error fetching user data:", error);
   }
 };
-
 onMounted(() => {
   fetchUserData();
 });
+
+const playGameExit = () => {
+  new Audio(GameLogoutSound).play();
+};
 </script>
 
 

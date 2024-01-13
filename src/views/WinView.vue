@@ -8,7 +8,7 @@
     </div>
     <div class="yourScore">Your score:</div>
     <div class="points">{{ points }}</div>
-    <router-link to="/overview" class="custom-button">Overview</router-link>
+    <router-link to="/overview" class="custom-button" @click="playOverviewSound">Overview</router-link>
     <LogOutButton />
   </div>
 </template>
@@ -18,7 +18,18 @@
 import LogOutButton from '../components/LogOutButton.vue';
 import { ref, onMounted } from 'vue';
 
+import successSound from '@/assets/GameWon.mp3';
+import OverviewSound from "@/assets/GameLoginSuccess.mp3";
+
 const points = ref(100);
+
+const playSuccessSound = () => {
+  new Audio(successSound).play();
+};
+
+const playOverviewSound = () => {
+  new Audio(OverviewSound).play();
+};
 
 const fetchPoints = async () => {
   try {
@@ -39,6 +50,9 @@ const fetchPoints = async () => {
     const user = await response.json();
 
     points.value = user.points;
+
+    // Play the success sound after successfully fetching points
+    playSuccessSound();
   } catch (error) {
     console.error("Error fetching points:", error);
   }
@@ -48,6 +62,7 @@ onMounted(() => {
   fetchPoints();
 });
 </script>
+
 
 
 <style scoped>

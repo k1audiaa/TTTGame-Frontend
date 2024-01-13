@@ -5,7 +5,13 @@
 <script setup lang="ts">
 import router from "@/router";
 
+// Import the sound effect
+import logoutSound from '@/assets/GameLogExit.mp3'; // Adjust the path based on your project structure
+
 const logout = () => {
+  // Play the logout sound before logging out
+  playLogoutSound();
+
   // Clear stored user ID from localStorage
   localStorage.removeItem('userId');
 
@@ -16,6 +22,10 @@ const logout = () => {
 
   router.push('/');
   console.log("User logged out successfully");
+};
+
+const playLogoutSound = () => {
+  new Audio(logoutSound).play();
 };
 </script>
 

@@ -32,6 +32,14 @@ const points = ref(100);
 const level = ref(1);
 const router = useRouter();
 
+// Import the sound effect
+import buttonClickSound from '@/assets/GameLoginSuccess.mp3'; // Adjust the path based on your project structure
+
+const playSound = () => {
+  // Use the imported sound effect
+  new Audio(buttonClickSound).play();
+};
+
 const login = async () => {
   try {
     if (!username.value) {
@@ -62,6 +70,10 @@ const login = async () => {
         localStorage.setItem('userId', user.id.toString());
         points.value = user.points;
         level.value = user.level;
+
+        // Play the sound after successful login
+        playSound();
+
         await router.push('/overview');
       } else {
         console.error('Unexpected response:', userResponse.status);
@@ -78,6 +90,10 @@ const login = async () => {
         console.log('New user created successfully');
         localStorage.setItem('username', newUserResponse.data.username);
         localStorage.setItem('userId', newUserResponse.data.id.toString());
+
+        // Play the sound after successful login
+        playSound();
+
         await router.push('/overview');
       } else {
         console.error('Unexpected response:', newUserResponse.status);
@@ -87,8 +103,6 @@ const login = async () => {
     console.error('Error during login:', error);
   }
 };
-
-
 </script>
 
 
@@ -149,7 +163,7 @@ const login = async () => {
   position: absolute;
   text-align: center;
   top: 600px;
-  left: 570px;
+  left: 580px;
   width: 275px;
   text-decoration: none;
 }

@@ -12,7 +12,7 @@
         <div class="level">Level</div>
         <div class="level2">{{ level }}</div>
       </div>
-      <router-link to="/game" class="custom-button">PLAY</router-link>
+      <router-link to="/game" class="custom-button" @click="playButtonClickSound">PLAY</router-link>
       <LogOutButton />
     </div>
   </div>
@@ -23,6 +23,8 @@
 import LogOutButton from '../components/LogOutButton.vue';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+
+import buttonClickSound from '@/assets/ButtonClick.mp3';
 
 const username = ref('[User]');
 const points = ref(100);
@@ -64,12 +66,15 @@ const fetchUserData = async () => {
   }
 };
 
+const playButtonClickSound = () => {
+  new Audio(buttonClickSound).play();
+};
+
 onMounted(() => {
   console.log('Component is mounted, fetching user data...');
   fetchUserData();
 });
 </script>
-
 
 
 <style scoped>

@@ -4,10 +4,19 @@
       <div class="div">
         <div class="text-wrapper">Let’s</div>
         <div class="text-wrapper-2">TicTacToe</div>
-        <router-link to="/login" class="custom-button">GO!</router-link>
+        <button @click="handleButtonClick" class="custom-button">GO!</button>
       </div>
     </div>
 </template>
+
+
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const handleButtonClick = () => {
+  router.push('/login');
+};
+</script>
 
 
 <style scoped>
