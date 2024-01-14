@@ -1,53 +1,74 @@
 [![JavaScript CI with npm](https://github.com/k1audiaa/TTTGame-Frontend/actions/workflows/npm.yml/badge.svg)](https://github.com/k1audiaa/TTTGame-Frontend/actions/workflows/npm.yml)
-# TTTGame-Frontend
+# TicTacToe Game Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+## Overview
 
-## Recommended IDE Setup
+This Vue.js frontend is part of the Tic Tac Toe (TTT) game project. It provides a simple user interface for the game, including login functionality and a logout. The frontend is designed to work best with Chrome, and the username for login must be a string containing at least 5 letters.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Features
 
-## Type Support for `.vue` Imports in TS
+- Login functionality with validation
+- Logout button with sound effect
+- Navigation through different views (Home, Login, Overview, Game, Win, Lost, Draw)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Technologies Used
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+- Vue.js 3
+- TypeScript
+- Vue Router
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+## Getting Started
 
-## Customize configuration
+### Prerequisites
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- Node.js
+- npm (Node Package Manager)
 
-## Project Setup
+### Installation
 
-```sh
-npm install
-```
+1. Clone the repository:
 
-### Compile and Hot-Reload for Development
+    ```bash
+    git clone https://github.com/k1audiaa/TTTGame-Frontend
+    ```
 
-```sh
-npm run dev
-```
+2. Install dependencies:
 
-### Type-Check, Compile and Minify for Production
+    ```bash
+    npm install
+    ```
 
-```sh
-npm run build
-```
+3. Run the frontend application:
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+    ```bash
+    npm run dev
+    ```
 
-```sh
-npm run test:unit
-```
+4. **Important Note:** Start the backend separately. Ensure that the backend is running, especially for user management. If the backend is not running, the login functionality will not work. You will find the backend repository here: https://github.com/k1audiaa/TTTgame
 
-### Lint with [ESLint](https://eslint.org/)
 
-```sh
-npm run lint
+5. Access the application at [http://localhost:5173](http://localhost:5173)
+
+## Views
+
+- **Home:** Displays the TTTgame logo and title.
+- **Login:** Allows users to enter a username and log in to the game.
+- **Overview:** Shows the user's information and provides a button to log out.
+- **Game:** Displays the Tic Tac Toe game.
+- **Win, Lost, Draw:** Views for different game outcomes.
+
+## Additional Notes
+
+- The application is optimized for Chrome; Safari compatibility is not guaranteed.
+- Username for login must be a string containing at least 5 letters.
+
+## Contributors
+
+- [k1audiaa](https://github.com/k1audiaa)
+- [MeraGebreyes](https://github.com/MeraGebreyes)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
 ```
