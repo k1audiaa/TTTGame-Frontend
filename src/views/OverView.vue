@@ -23,7 +23,6 @@
 import LogOutButton from '../components/LogOutButton.vue';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-
 import buttonClickSound from '@/assets/ButtonClick.mp3';
 
 const username = ref('[User]');
@@ -40,14 +39,12 @@ const fetchUserData = async () => {
       return;
     }
 
-    // Retrieve user ID from local storage
     const userId = localStorage.getItem('userId');
     if (!userId) {
       console.error('User ID not found in Local Storage.');
       return;
     }
 
-    // Fetch user data using user ID
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const endpoint = `${baseUrl}/api/users/${userId}`;
 

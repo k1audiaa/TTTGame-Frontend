@@ -19,6 +19,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
+import buttonClickSound from '@/assets/GameLoginSuccess.mp3';
 
 interface User {
   id: number;
@@ -32,11 +33,7 @@ const points = ref(100);
 const level = ref(1);
 const router = useRouter();
 
-// Import the sound effect
-import buttonClickSound from '@/assets/GameLoginSuccess.mp3'; // Adjust the path based on your project structure
-
 const playSound = () => {
-  // Use the imported sound effect
   new Audio(buttonClickSound).play();
 };
 
@@ -52,15 +49,18 @@ const login = async () => {
       return;
     }
 
+    if (username.value.length < 5) {
+      console.error('Username has to be at least 5 characters long.');
+      return;
+    }
+
     const baseUrl: string = import.meta.env.VITE_BACKEND_BASE_URL;
     const userExistEndpoint: string = `${baseUrl}/api/users/exists?username=${username.value}`;
     const userEndpoint: string = `${baseUrl}/api/users`;
 
-    // Check if user already exists
     const userExistResponse = await axios.get(userExistEndpoint);
 
     if (userExistResponse.data.exists) {
-      // User exists, fetch user data
       const userResponse = await axios.get<User>(`${userEndpoint}/${userExistResponse.data.userId}`);
 
       if (userResponse.status === 200) {
@@ -71,7 +71,6 @@ const login = async () => {
         points.value = user.points;
         level.value = user.level;
 
-        // Play the sound after successful login
         playSound();
 
         await router.push('/overview');
@@ -79,7 +78,6 @@ const login = async () => {
         console.error('Unexpected response:', userResponse.status);
       }
     } else {
-      // User does not exist, create a new user
       const newUserResponse = await axios.post<User>(userEndpoint, {
         username: username.value,
         points: points.value,
@@ -91,7 +89,6 @@ const login = async () => {
         localStorage.setItem('username', newUserResponse.data.username);
         localStorage.setItem('userId', newUserResponse.data.id.toString());
 
-        // Play the sound after successful login
         playSound();
 
         await router.push('/overview');
@@ -104,8 +101,6 @@ const login = async () => {
   }
 };
 </script>
-
-
 
 
 <style scoped>
@@ -122,6 +117,7 @@ const login = async () => {
   top: 280px;
   left: 400px;
 }
+
 .text1 {
   font-family: "Press Start 2P", Helvetica;
   color: #fff;
@@ -171,5 +167,4 @@ const login = async () => {
 .custom-button:hover {
   background-color: #2d2c8b;
 }
-
 </style>

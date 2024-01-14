@@ -23,7 +23,6 @@ import fetchPointsSound from '@/assets/GameDraw.mp3';
 import buttonClickSound from '@/assets/ButtonClick.mp3';
 import OverviewSound from '@/assets/GameLoginSuccess.mp3';
 
-
 const points = ref(0);
 
 const fetchPoints = async () => {
@@ -46,7 +45,6 @@ const fetchPoints = async () => {
 
     points.value = user.points;
 
-    // Play the fetch points sound
     playFetchPointsSound();
   } catch (error) {
     console.error("Error fetching points:", error);
@@ -69,7 +67,6 @@ const playOverviewSound = () => {
   new Audio(OverviewSound).play();
 };
 </script>
-
 
 
 <style scoped>
@@ -98,10 +95,11 @@ const playOverviewSound = () => {
   font-family: "Press Start 2P", Helvetica;
   position: absolute;
   top: 400px;
-  left: 660px;
+  left: 665px;
   font-size: 40px;
   color: #4441d8;
 }
+
 .custom-button {
   background-color: #4340d7;
   color: #ffffff;

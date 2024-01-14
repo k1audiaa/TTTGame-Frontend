@@ -2,20 +2,15 @@
   <button @click="logout" class="logout-button">Log Out</button>
 </template>
 
+
 <script setup lang="ts">
 import router from "@/router";
-
-// Import the sound effect
-import logoutSound from '@/assets/GameLogExit.mp3'; // Adjust the path based on your project structure
+import logoutSound from '@/assets/GameLogExit.mp3';
 
 const logout = () => {
-  // Play the logout sound before logging out
   playLogoutSound();
 
-  // Clear stored user ID from localStorage
   localStorage.removeItem('userId');
-
-  // You can also clear other user-related data if needed
   localStorage.removeItem('username');
   localStorage.removeItem('points');
   localStorage.removeItem('level');
@@ -28,6 +23,7 @@ const playLogoutSound = () => {
   new Audio(logoutSound).play();
 };
 </script>
+
 
 <style scoped>
 .logout-button {

@@ -73,7 +73,7 @@ const handleButtonClick = () => {
    cursor: pointer;
    border: none;
    border-radius: 5px;
-   left: 580px;
+   left: 600px;
    letter-spacing: 0;
    line-height: normal;
    position: absolute;

@@ -89,7 +89,6 @@ const updatePoints = async (points:number) => {
 };
 
 const checkWin = (symbol:string) => {
-  // Check rows, columns, and diagonals for a win
   for (let i = 0; i < 3; i++) {
     if (
         (cells[i * 3] === symbol && cells[i * 3 + 1] === symbol && cells[i * 3 + 2] === symbol) ||
@@ -157,7 +156,6 @@ const computerMove = () => {
 };
 
 const getWinningMove = (symbol: string) => {
-  // Check for a winning move in rows, columns, and diagonals
   for (let i = 0; i < 3; i++) {
     if (
         (cells[i * 3] === symbol && cells[i * 3 + 1] === symbol && cells[i * 3 + 2] === '') ||

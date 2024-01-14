@@ -17,14 +17,11 @@
 <script setup lang="ts">
 import LogOutButton from '../components/LogOutButton.vue';
 import { ref, onMounted } from 'vue';
-
-// Import the sound effect
 import LostSound from '@/assets/GameLost.mp3';
 import OverviewSound from '@/assets/GameLoginSuccess.mp3';
 
 const points = ref(0);
 
-// Use the imported sound effect
 const playSuccessSound = () => {
   new Audio(LostSound).play();
 };
@@ -65,12 +62,11 @@ const playOverviewSound = () => {
 </script>
 
 
-
 <style scoped>
-
 .lost {
   color: #4441d8;
 }
+
 .gameLost {
   font-family: "Press Start 2P", Helvetica;
   font-size: 55px;
@@ -79,6 +75,7 @@ const playOverviewSound = () => {
   top: 150px;
   left: 470px;
 }
+
 .yourScore {
   font-family: "Press Start 2P", Helvetica;
   color: #fff;
@@ -96,6 +93,7 @@ const playOverviewSound = () => {
   font-size: 40px;
   color: #4441d8;
 }
+
 .custom-button {
   background-color: #4340d7;
   color: #ffffff;

@@ -17,7 +17,6 @@
 <script setup lang="ts">
 import LogOutButton from '../components/LogOutButton.vue';
 import { ref, onMounted } from 'vue';
-
 import successSound from '@/assets/GameWon.mp3';
 import OverviewSound from "@/assets/GameLoginSuccess.mp3";
 
@@ -51,7 +50,6 @@ const fetchPoints = async () => {
 
     points.value = user.points;
 
-    // Play the success sound after successfully fetching points
     playSuccessSound();
   } catch (error) {
     console.error("Error fetching points:", error);
@@ -64,12 +62,11 @@ onMounted(() => {
 </script>
 
 
-
 <style scoped>
-
 .won {
   color: #4441d8;
 }
+
 .gameWon {
   font-family: "Press Start 2P", Helvetica;
   font-size: 55px;
@@ -78,6 +75,7 @@ onMounted(() => {
   top: 150px;
   left: 480px;
 }
+
 .yourScore {
   font-family: "Press Start 2P", Helvetica;
   color: #fff;
@@ -95,6 +93,7 @@ onMounted(() => {
   font-size: 40px;
   color: #4441d8;
 }
+
 .custom-button {
   background-color: #4340d7;
   color: #ffffff;
@@ -117,6 +116,5 @@ onMounted(() => {
 
 .custom-button:hover {
   background-color: #2d2c8b;
-
 }
 </style>
