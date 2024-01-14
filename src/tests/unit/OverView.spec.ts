@@ -3,8 +3,7 @@ import OverView from '../../views/OverView.vue';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import { describe, it, expect, vi } from 'vitest';
 
-globalThis.fetch = async () => ({ json: async () => ({ exists: true, userId: 1 }) });
-
+globalThis.fetch = async () => new Response(JSON.stringify({ exists: true, userId: 1 }), { status: 200 });
 describe('OverView.vue', () => {
     it('renders Overview view after successful login', async () => {
         const history = createMemoryHistory();

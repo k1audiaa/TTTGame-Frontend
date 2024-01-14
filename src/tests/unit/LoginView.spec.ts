@@ -16,15 +16,10 @@ describe('LoginView.vue', () => {
         });
 
         const mockFetch = jest.spyOn(globalThis, 'fetch');
-        mockFetch.mockResolvedValueOnce({
-            status: 200,
-            json: async () => ({
-                id: 1,
-                username: 'testUser',
-                points: 100,
-                level: 1,
-            }),
-        });
+        mockFetch.mockResolvedValueOnce(
+            new Response(JSON.stringify({ id: 1, username: 'example', points: 100, level: 2 }), { status: 200 })
+        );
+
 
         await wrapper.vm.$nextTick();
 

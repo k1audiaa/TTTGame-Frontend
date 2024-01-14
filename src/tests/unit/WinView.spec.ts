@@ -3,7 +3,7 @@ import { createRouter, createMemoryHistory } from 'vue-router';
 import { describe, it, expect, vi } from 'vitest';
 import WinView from "../../views/WinView.vue";
 
-globalThis.fetch = async () => ({ json: async () => ({ points: 42 }) });
+globalThis.fetch = async () => new Response(JSON.stringify({ points: 42 }), { status: 200 });
 
 describe('WinView.vue', () => {
     it('fetches points and displays the Win Lost view', async () => {

@@ -5,7 +5,8 @@ import { describe, it, expect, vi } from 'vitest';
 
 describe('LostView.vue', () => {
     it('fetches points and displays the Game Lost view', async () => {
-          global.fetch = async () => ({ json: async () => ({ points: 100 }) });
+        global.fetch = async () => new Response(JSON.stringify({ points: 100 }), { status: 200 });
+
 
         const history = createMemoryHistory();
         const router = createRouter({ history, routes: [] });

@@ -2,10 +2,12 @@ import { mount } from '@vue/test-utils';
 import DrawView from '../../views/DrawView.vue';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import { describe, it, expect, vi } from 'vitest';
+import { Headers } from "node-fetch";
 
 describe('DrawView.vue', () => {
     it('fetches points and displays the Draw view', async () => {
-        global.fetch = async () => ({ json: async () => ({ points: 50 }) });
+        global.fetch = async () => new Response(JSON.stringify({ points: 50 }), { status: 200 });
+
 
         const history = createMemoryHistory();
         const router = createRouter({ history, routes: [] });
