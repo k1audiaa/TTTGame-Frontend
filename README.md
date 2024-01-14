@@ -1,5 +1,4 @@
-[![CI](https://github.com/k1audiaa/TTTGame-Frontend/actions/workflows/ci.yml/badge.svg)](https://github.com/k1audiaa/TTTGame-Frontend/actions/workflows/ci.yml)
-
+[![JavaScript CI with npm](https://github.com/k1audiaa/TTTGame-Frontend/actions/workflows/npm.yml/badge.svg)](https://github.com/k1audiaa/TTTGame-Frontend/actions/workflows/npm.yml)
 # TTTGame-Frontend
 
 This template should help get you started developing with Vue 3 in Vite.
