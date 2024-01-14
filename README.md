@@ -8,7 +8,7 @@ This Vue.js frontend is part of the Tic Tac Toe (TTT) game project. It provides 
 ## Features
 
 - Login functionality with validation
-- Logout button with sound effect
+- Buttons with sound effects
 - Navigation through different views (Home, Login, Overview, Game, Win, Lost, Draw)
 
 ## Technologies Used
