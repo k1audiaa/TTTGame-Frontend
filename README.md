@@ -61,6 +61,7 @@ This Vue.js frontend is part of the Tic Tac Toe (TTT) game project. It provides 
 
 - The application is optimized for Chrome; Safari compatibility is not guaranteed.
 - Username for login must be a string containing at least 5 letters.
+- Your Username and your achieved points and levels are saved in the database and can be used to log in again.
 
 ## Contributors
 
